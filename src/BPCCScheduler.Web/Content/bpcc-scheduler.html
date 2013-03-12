@@ -1,0 +1,130 @@
+﻿<!doctype html>
+<html ng-app="myApp">
+
+<head>
+
+    <!--this version of jquery plays best with the angularui mask -->
+    <script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.js'></script>
+    <!--input mask (phone) -->
+    <script type='text/javascript' src="https://raw.github.com/twarogowski/angular-contrib/master/js/lib/jquery.maskedinput-1.3.js"></script>
+    <!--angular - mvc for browser -->
+    <script type='text/javascript' src="http://code.angularjs.org/1.1.1/angular.js"></script>
+    <!--bootstrap JS, nice UI styling -->
+    <script type='text/javascript' src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+    <!-- bootrap CSS, nice UI styling -->
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css">
+    <!--angular UI -->
+    <script type='text/javascript' src="https://raw.github.com/angular-ui/angular-ui/master/build/angular-ui.min.js"></script>
+
+    <!-- BPCC styling -->
+    <link href="bpcc-scheduler.css" rel="stylesheet" />
+    <!-- BPCC UI business logic -->
+    <script src="../Scripts/bpcc-scheduler.js"></script>
+
+</head>
+
+<body>
+    <form name="scheduleForm">
+        <div ng-controller="scheduleController">
+            <h2 class="app-title">{{title}}</h2>
+
+            <div class="{{message.cssClass}}">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>{{message.text}}
+            </div>
+            <table class="table table-striped bpcc">
+                <thead>
+                    <tr>
+                        <th>Client First Name</th>
+                        <th>Cellphone Number</th>
+                        <th>Appt.Time</th>
+                        <th>Day</th>
+                        <th>&nbsp;&nbsp;Date&nbsp;&nbsp;</th>
+                        <th>+ Week</th>
+                        <th>- Week</th>
+                        <th>Enter</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="edit-row">
+                        <td>
+                            <input class="input-small" type="text" placeholder="First Name" ng-model="selAppt.ClientName"
+                                required="required" />
+                        </td>
+                        <td>
+
+                            <input class="input phone" ui-mask="'(999) 999-9999'" type="text" ng-model="selAppt.Cell" required="required" />
+                        </td>
+                        <td>
+                            <select class="time-selector" ng-change="timeChanged(selAppt)" ng-model="time"
+                                ng-options="opt.value as opt.label for opt in times" required="required">
+                                <option style="display: none" value="">--TIME--</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="day-selector" ng-model="weekDay" ng-change="dayChanged(selAppt)"
+                                required="required" ng-options="opt.value as opt.label for opt in weekDays">
+                                <option style="display: none" value="">--Day--</option>
+                            </select>
+                        </td>
+                        <td class="nowrap">{{selAppt.Date | date:'d-MMM'}}</td>
+                        <td>
+                            <button type="button" class="btn" ng-click="addWeek(selAppt) ">
+                                <i class="icon-plus"></i>
+
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button " class="btn" ng-click="subtractWeek(selAppt) ">
+                                <i class="icon-minus "></i>
+
+                            </button>
+                        </td>
+                        <!--<td>
+                            <button type="button " class="btn" ng-click="clear(selAppt) "><i class="icon-remove "></i>
+
+                            </button>
+                        </td>-->
+                        <td>
+                            <button type="button " class="btn" ng-click="addAppt(selAppt) ">
+                                <i class="icon-ok-circle "></i>
+
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"></td>
+                        <th>Delete</th>
+                        <th>Reschedule</th>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr ng-repeat="appt in schedule | orderBy:sort" ng-class="getClass(appt)">
+                        <td>{{appt.ClientName}}</td>
+                        <td>{{appt.Cell | tel}}</td>
+                        <td>{{appt.Date | date:'h:mm a'}}</td>
+                        <td>{{getWeekDayLabel(appt.Date)}}</td>
+                        <td>{{appt.Date | date:'d-MMM'}}</td>
+                        <td>
+                            <button type="button " class="btn" ng-click="deleteAppt(appt)">
+                                <i class="icon-remove-circle"></i>
+
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button " class="btn" ng-click="editAppt(appt) ">
+                                <i class="icon-edit "></i>
+
+                            </button>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button type="button" class="btn" ng-click="post(appt)">Save</button>
+        </div>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+﻿body {
+            margin: 1em;
+        }
+
+        th, .nowrap {
+            white-space: nowrap;
+        }
+
+        .app-title {
+            color: #369;
+            font-family:;
+        }
+
+        table.bpcc td, table.bpcc th {
+            /*text-align: center;*/
+        }
+
+        input.phone {
+            width: 7em;
+            ;
+        }
+
+        .time-selector {
+            width: 7em;
+        }
+
+        .day-selector {
+            width: 9em;
+        }
+
+        .hidden {
+            display: none;
+        }
+tr.row-selected>td {
+    background-color: lightyellow !important;
+}
