@@ -191,7 +191,7 @@ var scheduleController = function ($scope) {
 
     $scope.post = function () {
         $.ajax({
-            type: 'POST',
+            type: 'PUT',
             url: '/api/BpccSchedule',
             cache: false,
             contentType: 'application/json; charset=utf-8',

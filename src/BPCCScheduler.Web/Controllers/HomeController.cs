@@ -11,6 +11,7 @@ namespace BPCCScheduler.Controllers
         public ActionResult Index()
         {
             return View();
+            //return Redirect("content/bpcc-scheduler.html");
         }
     }
 }
