@@ -33,6 +33,10 @@ namespace BPCCScheduler.Controllers
             _appointmentContext = appointmentContext;
         }
 
+
+
+
+        //save a whole list of appointments in one go
         public HttpResponseMessage Put(IEnumerable<Appointment> schedule)
         {
             if (ModelState.IsValid)
