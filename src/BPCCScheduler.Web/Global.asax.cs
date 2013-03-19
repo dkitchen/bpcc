@@ -22,6 +22,9 @@ namespace BPCCScheduler
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //regenerates DB when schema changes
+            //System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<BPCCScheduler.Models.AppointmentContext>());
         }
     }
 }
