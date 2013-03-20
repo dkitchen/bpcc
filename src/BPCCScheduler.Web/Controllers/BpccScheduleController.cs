@@ -41,10 +41,18 @@ namespace BPCCScheduler.Controllers
         {
             if (ModelState.IsValid)
             {
+                //first, clear all the data (TODO, this is dangerous, we should be updating any existing)
+                foreach (var item in _appointmentContext.Appointments)
+                {
+                    _appointmentContext.Appointments.Remove(item);
+                }
+
                 foreach (var appointment in schedule)
                 {
                     _appointmentContext.Appointments.Add(appointment);
                 }
+
+                //save changes
                 var saveResult = _appointmentContext.SaveChanges();
                 return new HttpResponseMessage(HttpStatusCode.NoContent);
             }
