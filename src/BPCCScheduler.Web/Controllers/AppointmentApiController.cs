@@ -26,10 +26,10 @@ namespace BPCCScheduler.Controllers
         // GET /api/appointmentapi/5
         public Appointment Get(int id)
         {
-            var notatweet = _appointmentRepository.Find(id);
-            if (notatweet == null)
+            var appt = _appointmentRepository.Find(id);
+            if (appt == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-            return notatweet;
+            return appt;
         }
 
         // POST /api/appointmentapi
@@ -42,7 +42,7 @@ namespace BPCCScheduler.Controllers
 
                 //Created!
                 //var response = new  HttpResponseMessage<Appointment>(value, HttpStatusCode.Created);
-                var response = Request.CreateResponse<Appointment>(HttpStatusCode.OK, value);
+                var response = Request.CreateResponse<Appointment>(HttpStatusCode.Created, value);
 
 
                 //Let them know where the new appointment is
@@ -70,8 +70,8 @@ namespace BPCCScheduler.Controllers
         // DELETE /api/appointmentapi/5
         public void Delete(int id)
         {
-            var notatweet = _appointmentRepository.Find(id);
-            if (notatweet == null)
+            var appt = _appointmentRepository.Find(id);
+            if (appt == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
             _appointmentRepository.Delete(id);

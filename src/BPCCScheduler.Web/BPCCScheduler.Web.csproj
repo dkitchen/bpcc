@@ -135,6 +135,7 @@
     <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\AppointmentApiController.cs" />
     <Compile Include="Controllers\BpccScheduleController.cs" />
+    <Compile Include="Controllers\DBController.cs" />
     <Compile Include="ElmahErrorAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ScheduleTodayAMController.cs" />
