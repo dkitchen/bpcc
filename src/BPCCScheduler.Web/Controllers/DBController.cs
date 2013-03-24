@@ -35,6 +35,8 @@ namespace BPCCScheduler.Controllers
 
         public string Get()
         {
+            _appointmentContext.Database.Connection.ConnectionString = "Data Source=|DataDirectory|BpccScheduler.sdf";
+            _appointmentContext.Database.CreateIfNotExists();
             return string.Format("connStr: {0}", _appointmentContext.Database.Connection.ConnectionString);
         }
 
