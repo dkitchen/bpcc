@@ -26,11 +26,11 @@ namespace BPCCScheduler.Controllers
         public IEnumerable<Appointment> Get ()
         {
             //any appointment after tonight midnight, but before tomorrow midnight
-            var tonightMidnight = DateTime.UtcNow.Date.AddDays(1);
+            var tonightMidnight = DateTime.Now.AddDays(1);
             var tomorrowMidnight = tonightMidnight.AddDays(1);
             
-            return _appointmentContext.Appointments
-                .Where(i => i.Date > tonightMidnight && i.Date < tomorrowMidnight);            
+            return _appointmentContext.Appointments.ToList()    //materialize for date conversion
+                .Where(i => i.Date.ToLocalTime() > tonightMidnight && i.Date.ToLocalTime() < tomorrowMidnight);            
         }
     }
 }
