@@ -29,7 +29,7 @@ namespace BPCCScheduler.Controllers
             var tonightMidnight = DateTime.Now.Date.AddDays(1);
             var tomorrowMidnight = tonightMidnight.AddDays(1);
             return _appointmentContext.Appointments
-                .Where(i => i.Date > tonightMidnight && i.Date < tomorrowMidnight);            
+                .Where(i => i.Date.ToLocalTime() > tonightMidnight && i.Date.ToLocalTime() < tomorrowMidnight);            
         }
     }
 }
