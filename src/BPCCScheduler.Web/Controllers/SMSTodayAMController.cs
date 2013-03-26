@@ -12,7 +12,7 @@ namespace BPCCScheduler.Controllers
     public class SMSTodayAMController : SMSApiController
     {
         //public IEnumerable<SMSMessage> Get()
-        public string Get()
+        public IEnumerable<Appointment> Get()
         {
             //any appointment today after last-night midnight, but before today noon
             var lastNightMidnight = DateTime.Now.Date;
@@ -24,7 +24,10 @@ namespace BPCCScheduler.Controllers
             ret += " " + todayNoon.ToLongTimeString();
             return ret;
             var appts = base.AppointmentContext.Appointments.ToList()    //materialize for date conversion
-                .Where(i => i.Date.ToLocalTime() > lastNightMidnight && i.Date.ToLocalTime() < todayNoon);    
+                //.Where(i => i.Date.ToLocalTime() > lastNightMidnight && i.Date.ToLocalTime() < todayNoon);    
+                .Select(i => new Appointment { Date = i.Date.ToLocalTime(), ClientName = i.ClientName, Cell = i.Cell});
+                
+            return appts;
 
             var messages = new List<SMSMessage>();
             foreach (var appt in appts)
@@ -36,6 +39,7 @@ namespace BPCCScheduler.Controllers
             }
 
             //return messages;
+            
         }
     }
 }
