@@ -143,6 +143,8 @@ var scheduleController = function ($scope, $http) {
 
     $scope.dayChanged = function (appt) {
         appt.Date = dateOfNext($scope.weekDay).toISOString();
+        //now time is messed up, so reset it
+        $scope.timeChanged(appt);
     };
 
     $scope.timeChanged = function (appt) {
