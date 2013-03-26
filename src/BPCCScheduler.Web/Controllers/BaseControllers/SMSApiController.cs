@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Twilio;
 
-namespace BPCCScheduler.Controllers
+namespace BPCCScheduler.Controllers.BaseControllers
 {
     public class SMSApiController : AppointmentContextApiController
     {

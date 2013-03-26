@@ -72,11 +72,11 @@ var scheduleController = function ($scope, $http) {
     //    "Date": "2013-03-01T22:15:00Z"
     //}, {
     //    "ClientName": "Baby",
-    //    "Cell": "7164443333",
+    //    "Cell": "7165553333",
     //    "Date": "2013-02-25T15:15:00Z"
     //}, {
     //    "ClientName": "Scary",
-    //    "Cell": "7166666666",
+    //    "Cell": "7165556666",
     //    "Date": "2013-02-26T22:45:00Z"
     //}, {
     //    "ClientName": "Sporty",
@@ -84,7 +84,7 @@ var scheduleController = function ($scope, $http) {
     //    "Date": "2013-02-27T23:00:00Z"
     //}, {
     //    "ClientName": "Ginger",
-    //    "Cell": "7707770770",
+    //    "Cell": "7705550770",
     //    "Date": "2013-02-28T23:30:00Z"
     //}];
 
@@ -182,7 +182,7 @@ var scheduleController = function ($scope, $http) {
 
     $scope.postSchedule = function () {
         $http.put(
-                '/api/BpccSchedule',
+                '/api/ScheduleAll',
                 JSON.stringify($scope.schedule)
             ).success(
                 alert("Schedule Saved")

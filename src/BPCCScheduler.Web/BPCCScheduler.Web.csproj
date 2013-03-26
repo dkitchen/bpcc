@@ -148,18 +148,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AppointmentContextApiController.cs" />
-    <Compile Include="Controllers\AppointmentController.cs" />
-    <Compile Include="Controllers\AppointmentApiController.cs" />
-    <Compile Include="Controllers\BpccScheduleController.cs" />
+    <Compile Include="Controllers\BaseControllers\AppointmentContextApiController.cs" />
     <Compile Include="Controllers\ScheduleAllController.cs" />
     <Compile Include="Controllers\SMSTodayAMController.cs" />
-    <Compile Include="Controllers\SMSApiController.cs" />
+    <Compile Include="Controllers\BaseControllers\SMSApiController.cs" />
     <Compile Include="Controllers\SMSTomorrowController.cs" />
     <Compile Include="ElmahErrorAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SMSTodayPMController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
