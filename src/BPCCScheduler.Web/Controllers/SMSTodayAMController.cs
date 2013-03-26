@@ -16,13 +16,9 @@ namespace BPCCScheduler.Controllers
         {
             //any appointment today after last-night midnight, but before today noon
             var lastNightMidnight = DateTime.Now.Date;
-            var ret = "";
-            ret += lastNightMidnight.ToLongDateString();
-            ret += " " + lastNightMidnight.ToLongTimeString();
+            
             var todayNoon = lastNightMidnight.AddHours(12);
-            ret += " " + todayNoon.ToLongDateString();
-            ret += " " + todayNoon.ToLongTimeString();
-            return ret;
+            
             var appts = base.AppointmentContext.Appointments.ToList()    //materialize for date conversion
                 //.Where(i => i.Date.ToLocalTime() > lastNightMidnight && i.Date.ToLocalTime() < todayNoon);    
                 .Select(i => new Appointment { Date = i.Date.ToLocalTime(), ClientName = i.ClientName, Cell = i.Cell});
