@@ -24,7 +24,7 @@ namespace BPCCScheduler.Controllers
             var messages = new List<SMSMessage>();
             foreach (var appt in appts)
             {
-                var body = string.Format("BPCC Reminder: Appointment this morning at {0}",
+                var body = string.Format("BPCC Reminder: Appointment this evening at {0}",
                     base.ToEST(appt.Date).ToShortTimeString());
                 var cell = string.Format("+1{0}", appt.Cell);
                 messages.Add(base.SendSmsMessage(cell, body));
