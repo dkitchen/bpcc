@@ -32,7 +32,7 @@ namespace BPCCScheduler.Controllers
                 messages.Add(base.SendSmsMessage(cell, body));
             }
 
-            return messages;
+            //return messages;
         }
     }
 }
