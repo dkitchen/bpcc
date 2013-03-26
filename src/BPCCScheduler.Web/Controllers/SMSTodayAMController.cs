@@ -11,31 +11,30 @@ namespace BPCCScheduler.Controllers
 {
     public class SMSTodayAMController : SMSApiController
     {
-        //public IEnumerable<SMSMessage> Get()
-        public IEnumerable<Appointment> Get()
+        public IEnumerable<SMSMessage> Get()        
         {
             //any appointment today after last-night midnight, but before today noon
-            var lastNightMidnight = DateTime.Now.Date;
+            var tzi = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+            var easternNow = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, tzi);
+            
+            var lastNightMidnight = easternNow.Date;
             
             var todayNoon = lastNightMidnight.AddHours(12);
             
             var appts = base.AppointmentContext.Appointments.ToList()    //materialize for date conversion
-                //.Where(i => i.Date.ToLocalTime() > lastNightMidnight && i.Date.ToLocalTime() < todayNoon);    
-                .Select(i => new Appointment { Date = i.Date.ToLocalTime(), ClientName = i.ClientName, Cell = i.Cell});
-                
-            return appts;
+                .Where(i => TimeZoneInfo.ConvertTimeFromUtc(i.Date, tzi) > lastNightMidnight 
+                    && TimeZoneInfo.ConvertTimeFromUtc(i.Date, tzi) < todayNoon);                
 
             var messages = new List<SMSMessage>();
             foreach (var appt in appts)
             {
                 var body = string.Format("BPCC Reminder: Appointment this morning at {0}",
-                    appt.Date.ToLocalTime().ToShortTimeString());
+                    TimeZoneInfo.ConvertTimeFromUtc(appt.Date, tzi).ToShortTimeString());
                 var cell = string.Format("+1{0}", appt.Cell);
                 messages.Add(base.SendSmsMessage(cell, body));
             }
 
-            //return messages;
-            
+            return messages;            
         }
     }
 }
