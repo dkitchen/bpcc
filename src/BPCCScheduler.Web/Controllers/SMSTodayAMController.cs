@@ -21,7 +21,7 @@ namespace BPCCScheduler.Controllers
             ret += " " + lastNightMidnight.ToLongTimeString()
             var todayNoon = lastNightMidnight.AddHours(12);
             ret += " " + todayNoon.ToLongDateString();
-            ret += " " + todayNoon.ToLongTimeString()
+            ret += " " + todayNoon.ToLongTimeString();
             return ret;
             var appts = base.AppointmentContext.Appointments.ToList()    //materialize for date conversion
                 .Where(i => i.Date.ToLocalTime() > lastNightMidnight && i.Date.ToLocalTime() < todayNoon);    
