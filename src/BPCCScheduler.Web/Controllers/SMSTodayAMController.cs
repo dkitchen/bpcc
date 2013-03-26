@@ -18,7 +18,7 @@ namespace BPCCScheduler.Controllers
             var lastNightMidnight = DateTime.Now.Date;
             var ret = "";
             ret += lastNightMidnight.ToLongDateString();
-            ret += " " + lastNightMidnight.ToLongTimeString()
+            ret += " " + lastNightMidnight.ToLongTimeString();
             var todayNoon = lastNightMidnight.AddHours(12);
             ret += " " + todayNoon.ToLongDateString();
             ret += " " + todayNoon.ToLongTimeString();
