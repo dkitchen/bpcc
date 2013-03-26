@@ -2,7 +2,7 @@
 
 var myApp = angular.module('myApp', ['ui']);
 
-var scheduleController = function ($scope) {
+var scheduleController = function ($scope, $http) {
 
     ////*******    Reference Data for drop downs *********/////
     $scope.times = [{
@@ -64,30 +64,30 @@ var scheduleController = function ($scope) {
     };
 
 
-
     //////******   MODEL Data   ************/////
 
-    $scope.schedule = [{
-        "ClientName": "Posh",
-        "Cell": "7165551212",
-        "Date": "2013-03-01T22:15:00Z"
-    }, {
-        "ClientName": "Baby",
-        "Cell": "7164443333",
-        "Date": "2013-02-25T15:15:00Z"
-    }, {
-        "ClientName": "Scary",
-        "Cell": "7166666666",
-        "Date": "2013-02-26T22:45:00Z"
-    }, {
-        "ClientName": "Sporty",
-        "Cell": "7165555555",
-        "Date": "2013-02-27T23:00:00Z"
-    }, {
-        "ClientName": "Ginger",
-        "Cell": "7707770770",
-        "Date": "2013-02-28T23:30:00Z"
-    }];
+    //$scope.schedule = [{
+    //    "ClientName": "Posh",
+    //    "Cell": "7165551212",
+    //    "Date": "2013-03-01T22:15:00Z"
+    //}, {
+    //    "ClientName": "Baby",
+    //    "Cell": "7164443333",
+    //    "Date": "2013-02-25T15:15:00Z"
+    //}, {
+    //    "ClientName": "Scary",
+    //    "Cell": "7166666666",
+    //    "Date": "2013-02-26T22:45:00Z"
+    //}, {
+    //    "ClientName": "Sporty",
+    //    "Cell": "7165555555",
+    //    "Date": "2013-02-27T23:00:00Z"
+    //}, {
+    //    "ClientName": "Ginger",
+    //    "Cell": "7707770770",
+    //    "Date": "2013-02-28T23:30:00Z"
+    //}];
+
 
     $scope.sort = "Date";
 
@@ -125,14 +125,14 @@ var scheduleController = function ($scope) {
     $scope.editAppt = function (appt) {
         var index = $scope.schedule.indexOf(appt);
         //$scope.selAppt = angular.copy($scope.schedule[i]);
-        $scope.selAppt = $scope.schedule[index];        
-        $scope.weekDay = $scope.getWeekDay($scope.selAppt.Date).value;        
+        $scope.selAppt = $scope.schedule[index];
+        $scope.weekDay = $scope.getWeekDay($scope.selAppt.Date).value;
         var aDate = new Date($scope.selAppt.Date);
         $scope.time = aDate.getHours().toString() + ":" + aDate.getMinutesTwoDigits().toString();
     };
 
     $scope.getWeekDay = function (dateVal) {
-        var date = new Date(dateVal);        
+        var date = new Date(dateVal);
         var weekday = $scope.weekDays[date.getDay() - 1];
         return weekday;
     };
@@ -179,9 +179,23 @@ var scheduleController = function ($scope) {
         };
     };
 
+
+    $scope.postSchedule = function () {
+        $http.put(
+                '/api/BpccSchedule',
+                JSON.stringify($scope.schedule)
+            ).success(
+                alert("Schedule Saved")
+        );
+    };
+
+
     $scope.init = function () {
         //clear the selected appt
         $scope.clearSelectedAppointment();
+        $http.get('api/ScheduleAll').success(function (data) {
+            $scope.schedule = data;
+        });
     };
 
 
@@ -189,20 +203,6 @@ var scheduleController = function ($scope) {
     $scope.init();
 
 
-    $scope.post = function () {
-        $.ajax({
-            type: 'PUT',
-            url: '/api/BpccSchedule',
-            cache: false,
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify($scope.schedule),
-            success: function () {
-                alert("Schedule Saved");
-            }
-        });
-    };
-
-    
 
 
 }; //end of Schedule Controller
