@@ -149,6 +149,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseControllers\AppointmentContextApiController.cs" />
+    <Compile Include="Controllers\ScheduleTodayPMController.cs" />
+    <Compile Include="Controllers\ScheduleTodayAMController.cs" />
+    <Compile Include="Controllers\ScheduleTomorrowController.cs" />
     <Compile Include="Controllers\ScheduleAllController.cs" />
     <Compile Include="Controllers\SMSTodayAMController.cs" />
     <Compile Include="Controllers\BaseControllers\SMSApiController.cs" />
