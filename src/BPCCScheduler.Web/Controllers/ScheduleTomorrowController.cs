@@ -16,7 +16,7 @@ namespace BPCCScheduler.Controllers
         {
             //any appointment after tonight midnight, but before tomorrow midnight
             var tonightMidnight = base.EasternStandardTimeNow.AddDays(1);
-            var tomorrowMidnight = tonightMidnight.AddDays(1);
+            var tomorrowMidnight = tonightMidnight.AddHours(20);
 
             var appts = base.AppointmentContext.Appointments.ToList()    //materialize for date conversion
                 .Where(i => base.ToEST(i.Date) > tonightMidnight
