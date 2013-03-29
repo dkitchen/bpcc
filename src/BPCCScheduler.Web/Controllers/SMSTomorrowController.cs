@@ -14,7 +14,7 @@ namespace BPCCScheduler.Controllers
         public IEnumerable<SMSMessage> Get()
         {
             //any appointment after tonight midnight, but before tomorrow midnight
-            var tonightMidnight = base.EasternStandardTimeNow.AddDays(1);
+            var tonightMidnight = base.EasternStandardTimeNow.Date.AddDays(1);
             var tomorrowMidnight = tonightMidnight.AddDays(1);
 
             var appts = base.AppointmentContext.Appointments.ToList()    //materialize for date conversion
