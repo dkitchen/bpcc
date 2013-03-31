@@ -13,7 +13,9 @@ namespace BPCCScheduler.Controllers
     {
         public IEnumerable<Appointment> Get()
         {
-            return base.AppointmentContext.Appointments;
+            var lastWeek = base.EasternStandardTimeNow.Date.AddDays(-7);
+            return base.AppointmentContext.Appointments.ToList()
+                .Where(i => base.ToEST(i.Date) > lastWeek);
         }
 
         //save a whole list of appointments in one go
