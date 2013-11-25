@@ -24,6 +24,12 @@ namespace BPCCScheduler.Controllers
             //return Redirect("content/bpcc-scheduler.html");
         }
 
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View("Login");
+        }
+
         [HttpPost]
         public ActionResult Login(LoginModel login)
         {
