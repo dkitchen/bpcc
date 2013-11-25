@@ -170,7 +170,6 @@
     <Reference Include="WebGrease">
       <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
     </Reference>
-    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AuthConfig.cs" />
@@ -178,9 +177,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Areas\SimpleMembershipAdministration\Controllers\MainController.cs" />
-    <Compile Include="Areas\SimpleMembershipAdministration\SimpleMembershipAdministrationAreaRegistration.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseControllers\AppointmentContextApiController.cs" />
     <Compile Include="Controllers\ScheduleTodayPMController.cs" />
     <Compile Include="Controllers\ScheduleTodayAMController.cs" />
@@ -192,7 +188,6 @@
     <Compile Include="ElmahErrorAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SMSTodayPMController.cs" />
-    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -201,7 +196,6 @@
     <Compile Include="Models\AppointmentContext.cs" />
     <Compile Include="Models\AppointmentData.cs" />
     <Compile Include="Models\AppointmentRepository.cs" />
-    <Compile Include="Models\CustomMembershipProvider.cs" />
     <Compile Include="Models\SchedulerViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -264,11 +258,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Areas\SimpleMembershipAdministration\Views\Main\Index.cshtml" />
-    <Content Include="Areas\SimpleMembershipAdministration\Views\Main\Roles.cshtml" />
-    <Content Include="Areas\SimpleMembershipAdministration\Views\Main\Users.cshtml" />
-    <Content Include="Areas\SimpleMembershipAdministration\Views\Web.config" />
-    <Content Include="Areas\SimpleMembershipAdministration\Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -310,8 +299,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-2.1.0.debug.js" />
-    <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -348,6 +335,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\" />
+    <Folder Include="Filters\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
