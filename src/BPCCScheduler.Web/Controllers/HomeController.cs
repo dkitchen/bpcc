@@ -13,6 +13,7 @@ namespace BPCCScheduler.Controllers
 
         const string LOGIN_SESSION_KEY = "bpcc_admin_login";
 
+        [RequireHttps]
         public ActionResult Index()
         {
             if (!IsAuthorized(null))
