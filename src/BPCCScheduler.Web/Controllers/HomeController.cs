@@ -25,6 +25,7 @@ namespace BPCCScheduler.Controllers
         }
 
         [HttpGet]
+        [RequireHttps]
         public ActionResult Login()
         {
             return View("Login");
